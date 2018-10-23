@@ -67,42 +67,42 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
     <modules>
-        <module>aggregate-src</module>
+        <module>sync-endpoint-war</module>
         <module>odk-container-settings</module>
         <module>odk-tables-api</module>
     </modules>
-    <repositories>
-        <!-- main repository -->
-        <repository>
-          <id>central</id>
-          <name>Maven Central Repository</name>
-          <layout>default</layout>
-          <url>http://repo.maven.apache.org/maven2</url>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <!-- main repository -->
-        <pluginRepository>
-          <id>central</id>
-          <name>Maven Central Repository</name>
-          <layout>default</layout>
-          <url>http://repo.maven.apache.org/maven2</url>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-        </pluginRepository>
-        <pluginRepository>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>sonatype.snapshots</id>
-          <name>sonatype-plugins-release</name>
-          <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </pluginRepository>
-    </pluginRepositories>
+    <!--<repositories>-->
+        <!--&lt;!&ndash; main repository &ndash;&gt;-->
+        <!--<repository>-->
+          <!--<id>central</id>-->
+          <!--<name>Maven Central Repository</name>-->
+          <!--<layout>default</layout>-->
+          <!--<url>http://repo.maven.apache.org/maven2</url>-->
+          <!--<snapshots>-->
+            <!--<enabled>false</enabled>-->
+          <!--</snapshots>-->
+        <!--</repository>-->
+    <!--</repositories>-->
+    <!--<pluginRepositories>-->
+        <!--&lt;!&ndash; main repository &ndash;&gt;-->
+        <!--<pluginRepository>-->
+          <!--<id>central</id>-->
+          <!--<name>Maven Central Repository</name>-->
+          <!--<layout>default</layout>-->
+          <!--<url>http://repo.maven.apache.org/maven2</url>-->
+          <!--<snapshots>-->
+            <!--<enabled>false</enabled>-->
+          <!--</snapshots>-->
+        <!--</pluginRepository>-->
+        <!--<pluginRepository>-->
+          <!--<snapshots>-->
+            <!--<enabled>false</enabled>-->
+          <!--</snapshots>-->
+          <!--<id>sonatype.snapshots</id>-->
+          <!--<name>sonatype-plugins-release</name>-->
+          <!--<url>https://oss.sonatype.org/content/repositories/snapshots/</url>-->
+        <!--</pluginRepository>-->
+    <!--</pluginRepositories>-->
     <dependencies>
 		<dependency> <!-- Google Cloud MySQL version 2 -->
 			<groupId>com.google.cloud.sql</groupId>
@@ -866,19 +866,9 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
                     <version>${maven.war.plugin.version}</version> <!-- 2.1.1 generates spurious warnings -->
-                    <executions>
-                        <execution>
-                            <id>war-build</id>
-                            <!-- used in aggregate-sqlserver, aggregate-postgres, aggregate-mysql -->
-                            <configuration>
-                              <warSourceDirectory>src/main/webapp</warSourceDirectory> 
-<!--                              <packagingExcludes>WEB-INF/lib/gwt-user*.jar</packagingExcludes> -->
-                            </configuration>
-                            <goals>
-                              <goal>war</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+                    <configuration>
+                        <warSourceDirectory>src/main/webapp</warSourceDirectory>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
