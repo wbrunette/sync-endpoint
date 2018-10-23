@@ -33,33 +33,6 @@
 				</execution>
 			</executions>
 		</plugin>
-		<plugin>
-			<groupId>org.codehaus.mojo</groupId>
-			<artifactId>gwt-maven-plugin</artifactId>
-			<version>${gwt.maven.plugin.version}</version>
-			<dependencies>
-				<dependency>	
-					<groupId>com.google.gwt</groupId>
-					<artifactId>gwt-user</artifactId>
-					<version>${google.gwt.version}</version>
-				</dependency>
-				<dependency>
-					<groupId>com.google.gwt</groupId>
-					<artifactId>gwt-dev</artifactId>
-					<version>${google.gwt.version}</version>
-				</dependency>
-				<dependency>
-					<groupId>javax.validation</groupId>
-					<artifactId>validation-api</artifactId>
-					<version>1.0.0.GA</version>
-				</dependency>
-			</dependencies>
-			<executions>
-			  <execution>
-				<id>gwt-javascript</id>
-			  </execution>
-			</executions>
-		</plugin>
 	</plugins>
   </build>
 </project>
