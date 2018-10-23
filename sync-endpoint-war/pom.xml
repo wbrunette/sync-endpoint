@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.opendatakit</groupId>
+        <artifactId>aggregate</artifactId>
+        <version>1.0.1</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>sync-endpoint-war</artifactId>
+    <packaging>war</packaging>
+    <version>latest</version>
+    <name>Sync Endpoint WAR</name>
+
+    <build>
+        <sourceDirectory>${toplevel.directory}/src/main/java</sourceDirectory>
+        <testSourceDirectory>${toplevel.directory}/src/it/java</testSourceDirectory>
+        <testResources>
+            <testResource>
+                <directory>${toplevel.directory}/src/it/java</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
+            </testResource>
+        </testResources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>war-clean</id>
+                        <phase>pre-clean</phase>
+                    </execution>
+                    <execution>
+                        <id>war-prep</id>
+                        <phase>generate-resources</phase>
+                    </execution>
+                    <execution>
+                        <id>war-remove-classes</id>
+                        <phase>prepare-package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <!-- This configures the running of odktables integration tests. -->
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <argLine>${surefire.argLine}</argLine>
+                    <skipTests>true</skipTests>
+                    <classesDirectory>${project.build.directory}/generated-classes/jacoco/classes</classesDirectory>
+                    <excludes>
+                        <exclude>**/integration/**</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                    </execution>
+                    <execution>
+                        <id>verify</id>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.opendatakit</groupId>
+            <artifactId>odk-container-settings</artifactId>
+            <version>latest</version>
+        </dependency>
+    </dependencies>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>${maven.surefire.report.plugin.version}</version>
+                <inherited>true</inherited>
+            </plugin>
+        </plugins>
+    </reporting>
+</project>
