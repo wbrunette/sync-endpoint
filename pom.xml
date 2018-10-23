@@ -20,11 +20,6 @@
     <name>ODK Aggregate</name>
     <properties>
         <toplevel.directory>${project.basedir}/../</toplevel.directory>
-        <!-- selenium 3.x is built using Java 8. -->
-        <!-- must match the seleniumhq version below and the build/build.xml ant script defn -->
-        <org.seleniumhq.version>3.4.0</org.seleniumhq.version>
-        <selenium.home>${project.basedir}/../build/selenium-java-${org.seleniumhq.version}/selenium-${org.seleniumhq.version}</selenium.home>
-        <selenium.libs>${project.basedir}/../build/selenium-java-${org.seleniumhq.version}/selenium-${org.seleniumhq.version}/libs</selenium.libs>
 
         <war.directory>${project.basedir}/../war-base</war.directory>
         <scriptSourceDirectory>${project.basedir}/../src/it/scripts</scriptSourceDirectory>
@@ -39,7 +34,6 @@
         <google.api-client.version>1.22.0</google.api-client.version>
         <google.api-services-sheets.version>v4-rev38-1.22.0</google.api-services-sheets.version>
         <google.api-services-drive.version>v3-rev52-1.22.0</google.api-services-drive.version>
-        <google.gwt.version>2.7.0</google.gwt.version>
         <org.apache.wink.version>1.4</org.apache.wink.version>
         <maven.surefire.report.plugin.version>2.19.1</maven.surefire.report.plugin.version>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
@@ -260,27 +254,6 @@
           <version>${google.api-client.version}</version>
           <type>jar</type>
           <scope>compile</scope>
-        </dependency>
-        <dependency>
-          <groupId>com.googlecode.gwt-google-maps-v3</groupId>
-          <artifactId>gwt-google-maps-v3</artifactId> <!-- see src/main/libs/readme.txt -->
-          <version>1.0.1</version>
-          <type>jar</type>
-          <scope>compile</scope>
-        </dependency>
-        <dependency>
-          <groupId>com.google.gwt.google-apis</groupId>
-          <artifactId>gwt-visualization</artifactId> <!-- see src/main/libs/readme.txt -->
-          <version>1.1.2</version>
-          <type>jar</type>
-          <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-servlet</artifactId>
-            <version>${google.gwt.version}</version>
-            <type>jar</type>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -883,20 +856,4 @@
             </plugins>
         </pluginManagement>
     </build>
-    <ciManagement>
-        <system>jenkins</system>
-        <url>http://cwe.cs.washington.edu:8081/</url>
-        <notifiers>
-          <notifier>
-            <type>mail</type>
-            <sendOnError>true</sendOnError>
-            <sendOnFailure>true</sendOnFailure>
-            <sendOnSuccess>false</sendOnSuccess>
-            <sendOnWarning>false</sendOnWarning>
-            <configuration>
-            <address>msundt@cs.washington.edu</address>
-          </configuration>
-          </notifier>
-        </notifiers>
-    </ciManagement>
 </project>
