@@ -294,13 +294,8 @@
 		class="org.springframework.security.web.access.ExceptionTranslationFilter">
 		<beans:constructor-arg ref="delegatingAuthenticationEntryPoint"/>
 		<beans:property name="accessDeniedHandler">
-			<beans:bean class="org.opendatakit.common.security.spring.GWTAccessDeniedHandlerImpl">
-				<beans:property name="gwtHeader" value="X-opendatakit-gwt"/>
-				<beans:property name="ordinaryAccessDeniedHandler">
-					<beans:bean	class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
-						<beans:property name="errorPage" value="/access-denied.html" />
-					</beans:bean>
-				</beans:property>
+			<beans:bean	class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+				<beans:property name="errorPage" value="/access-denied.html" />
 			</beans:bean>
 		</beans:property>
 	</beans:bean>
