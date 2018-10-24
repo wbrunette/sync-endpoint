@@ -356,13 +356,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.opendatakit</groupId>
-            <artifactId>odk-tomcatutil</artifactId> <!-- see src/main/libs/readme.txt -->
-            <version>1.0.1</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
           <groupId>org.postgresql</groupId>
           <artifactId>postgresql</artifactId>
           <version>9.4.1211.jre7</version>
