@@ -584,70 +584,10 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-          <groupId>org.seleniumhq.selenium</groupId>
-          <artifactId>selenium-support</artifactId>
-          <version>${org.seleniumhq.version}</version>
-          <scope>test</scope>
-          <exclusions>
-            <exclusion>
-              <groupId>log4j</groupId>
-              <artifactId>log4j</artifactId>
-            </exclusion>
-          </exclusions>
-        </dependency>
-        <dependency>
-          <groupId>org.seleniumhq.selenium</groupId>
-          <artifactId>selenium-api</artifactId>
-          <version>${org.seleniumhq.version}</version>
-          <scope>test</scope>
-          <exclusions>
-            <exclusion>
-              <groupId>log4j</groupId>
-              <artifactId>log4j</artifactId>
-            </exclusion>
-          </exclusions>
-        </dependency>
-        <dependency>
-          <groupId>org.seleniumhq.selenium</groupId>
-          <artifactId>selenium-java</artifactId>
-          <version>${org.seleniumhq.version}</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.seleniumhq.selenium</groupId>
-          <artifactId>selenium-leg-rc</artifactId>
-          <version>${org.seleniumhq.version}</version>
-          <scope>test</scope>
-          <exclusions>
-            <exclusion>
-              <groupId>log4j</groupId>
-              <artifactId>log4j</artifactId>
-            </exclusion>
-          </exclusions>
-        </dependency>
-        <dependency>
-          <groupId>org.seleniumhq.selenium</groupId>
-          <artifactId>selenium-firefox-driver</artifactId>
-          <version>${org.seleniumhq.version}</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.seleniumhq.selenium</groupId>
-          <artifactId>selenium-chrome-driver</artifactId>
-          <version>${org.seleniumhq.version}</version>
-          <scope>test</scope>
-        </dependency>
-		<dependency>
+     	<dependency>
 		  <groupId>io.netty</groupId>
 		  <artifactId>netty-all</artifactId>
 		  <version>4.0.42.Final</version>
-		  <scope>test</scope>
-		</dependency>
-		<dependency>
-		  <groupId>org.seleniumhq.selenium</groupId>
-		  <artifactId>selenium-remote-driver</artifactId>
-		  <version>${org.seleniumhq.version}</version>
 		  <scope>test</scope>
 		</dependency>
 		<dependency>
