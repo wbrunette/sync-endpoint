@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0   http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.opendatakit</groupId>
-    <artifactId>aggregate</artifactId>
+    <artifactId>sync-endpoint</artifactId>
     <version>1.0.1</version>
     <packaging>pom</packaging>
     <licenses>
@@ -17,7 +17,7 @@
         <name>Open Data Kit</name>
         <url>https://opendatakit.org/</url>
     </organization>
-    <name>ODK Aggregate</name>
+    <name>ODK Sync-Endpoint</name>
     <properties>
         <toplevel.directory>${project.basedir}/../</toplevel.directory>
 
@@ -65,44 +65,7 @@
         <module>odk-container-settings</module>
         <module>odk-tables-api</module>
     </modules>
-    <!--<repositories>-->
-        <!--&lt;!&ndash; main repository &ndash;&gt;-->
-        <!--<repository>-->
-          <!--<id>central</id>-->
-          <!--<name>Maven Central Repository</name>-->
-          <!--<layout>default</layout>-->
-          <!--<url>http://repo.maven.apache.org/maven2</url>-->
-          <!--<snapshots>-->
-            <!--<enabled>false</enabled>-->
-          <!--</snapshots>-->
-        <!--</repository>-->
-    <!--</repositories>-->
-    <!--<pluginRepositories>-->
-        <!--&lt;!&ndash; main repository &ndash;&gt;-->
-        <!--<pluginRepository>-->
-          <!--<id>central</id>-->
-          <!--<name>Maven Central Repository</name>-->
-          <!--<layout>default</layout>-->
-          <!--<url>http://repo.maven.apache.org/maven2</url>-->
-          <!--<snapshots>-->
-            <!--<enabled>false</enabled>-->
-          <!--</snapshots>-->
-        <!--</pluginRepository>-->
-        <!--<pluginRepository>-->
-          <!--<snapshots>-->
-            <!--<enabled>false</enabled>-->
-          <!--</snapshots>-->
-          <!--<id>sonatype.snapshots</id>-->
-          <!--<name>sonatype-plugins-release</name>-->
-          <!--<url>https://oss.sonatype.org/content/repositories/snapshots/</url>-->
-        <!--</pluginRepository>-->
-    <!--</pluginRepositories>-->
     <dependencies>
-		<dependency> <!-- Google Cloud MySQL version 2 -->
-			<groupId>com.google.cloud.sql</groupId>
-			<artifactId>mysql-socket-factory</artifactId>
-			<version>1.0.2</version>
-		</dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>
@@ -354,6 +317,13 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.40</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.opendatakit</groupId>
+            <artifactId>odk-tomcatutil</artifactId> <!-- see src/main/libs/readme.txt -->
+            <version>1.0.1</version>
+            <type>jar</type>
+            <scope>compile</scope>
         </dependency>
         <dependency>
           <groupId>org.postgresql</groupId>
