@@ -41,23 +41,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
             </plugin>
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>war-clean</id>
-                        <phase>pre-clean</phase>
-                    </execution>
-                    <execution>
-                        <id>war-prep</id>
-                        <phase>generate-resources</phase>
-                    </execution>
-                    <execution>
-                        <id>war-remove-classes</id>
-                        <phase>prepare-package</phase>
-                    </execution>
-                </executions>
-            </plugin>
 
             <plugin>
                 <!-- This configures the running of odktables integration tests. -->
