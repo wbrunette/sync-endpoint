@@ -40,11 +40,11 @@
         <surefire.argLine>-Xms300m -Xmx3048m -XX:+UseParallelGC -XX:+UseParallelOldGC</surefire.argLine> <!-- JVM size can probably be reduced -->
         <maven.failsafe.plugin.version>2.19.1</maven.failsafe.plugin.version>
         <build.helper.maven.plugin.version>1.10</build.helper.maven.plugin.version>
-        <maven.jar.plugin.version>2.6</maven.jar.plugin.version>
-        <maven.javadoc.plugin.version>2.10.3</maven.javadoc.plugin.version>
+        <maven.jar.plugin.version>3.1.0</maven.jar.plugin.version>
+        <maven.javadoc.plugin.version>3.0.1</maven.javadoc.plugin.version>
         <maven.source.plugin.version>3.0.1</maven.source.plugin.version>
-        <maven.war.plugin.version>2.6</maven.war.plugin.version>
-        <maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
+        <maven.war.plugin.version>3.2.2</maven.war.plugin.version>
+        <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
         <junit.version>4.12</junit.version>
         <com.fasterxml.jackson.base.version>2.8.5</com.fasterxml.jackson.base.version>
         <com.fasterxml.jackson.core.version>2.8.5</com.fasterxml.jackson.core.version>
@@ -579,7 +579,7 @@
               <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.10</version>
+                <version>3.1.1</version>
                 <executions>
                     <execution>
                         <id>analyze</id>
@@ -671,6 +671,7 @@
                     <version>${maven.war.plugin.version}</version> <!-- 2.1.1 generates spurious warnings -->
                     <configuration>
                         <warSourceDirectory>${toplevel.directory}/src/main/webapp</warSourceDirectory>
+						<webXml>${toplevel.directory}/src/main/webapp/WEB-INF/web.xml</webXml>
                     </configuration>
                 </plugin>
             </plugins>
