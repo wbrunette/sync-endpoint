@@ -665,7 +665,6 @@
                     <version>${maven.war.plugin.version}</version> <!-- 2.1.1 generates spurious warnings -->
                     <configuration>
                         <warSourceDirectory>${toplevel.directory}/src/main/webapp</warSourceDirectory>
-						<webXml>${toplevel.directory}/src/main/webapp/WEB-INF/web.xml</webXml>
                     </configuration>
                 </plugin>
             </plugins>
