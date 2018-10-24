@@ -1,15 +1,15 @@
 package org.opendatakit.aggregate.integration.utilities;
 
-import static org.junit.Assert.assertTrue;
-
-import java.io.File;
-import java.io.IOException;
-
 import org.apache.commons.lang3.Validate;
 import org.opendatakit.aggregate.selenium.BaseWebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.File;
+import java.io.IOException;
+
+import static org.junit.Assert.assertTrue;
 
 public class Interact {
 

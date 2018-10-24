@@ -1,21 +1,16 @@
 package org.opendatakit.aggregate.odktables.api;
 
-import static org.junit.Assert.assertEquals;
-
-import java.net.URI;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.opendatakit.aggregate.odktables.rest.entity.Scope;
-import org.opendatakit.aggregate.odktables.rest.entity.TableAcl;
-import org.opendatakit.aggregate.odktables.rest.entity.TableAclResource;
-import org.opendatakit.aggregate.odktables.rest.entity.TableAclResourceList;
-import org.opendatakit.aggregate.odktables.rest.entity.TableResource;
-import org.opendatakit.aggregate.odktables.rest.entity.TableRole;
+import org.opendatakit.aggregate.odktables.rest.entity.*;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+
+import java.net.URI;
+
+import static org.junit.Assert.assertEquals;
 
 @RunWith(org.junit.runners.JUnit4.class)
 public class TableAclServiceTest extends AbstractServiceTest {

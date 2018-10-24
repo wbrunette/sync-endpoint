@@ -1,8 +1,5 @@
 package org.opendatakit.aggregate.externalservice;
 
-import java.io.File;
-import java.util.function.Function;
-
 import org.apache.commons.lang3.StringUtils;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -12,6 +9,9 @@ import org.opendatakit.aggregate.selenium.BaseWebDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.File;
+import java.util.function.Function;
 
 @RunWith(org.junit.runners.JUnit4.class)
 public class TestJsonServer {

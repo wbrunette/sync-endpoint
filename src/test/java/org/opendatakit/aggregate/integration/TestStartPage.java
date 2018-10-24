@@ -1,8 +1,5 @@
 package org.opendatakit.aggregate.integration;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -10,6 +7,9 @@ import org.junit.runner.RunWith;
 import org.opendatakit.aggregate.selenium.BaseWebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(org.junit.runners.JUnit4.class)
 public class TestStartPage {

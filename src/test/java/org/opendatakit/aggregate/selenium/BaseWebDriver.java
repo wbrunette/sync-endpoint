@@ -1,12 +1,9 @@
 package org.opendatakit.aggregate.selenium;
 
-import static org.junit.Assert.assertTrue;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
-
+import net.lightbody.bmp.BrowserMobProxy;
+import net.lightbody.bmp.BrowserMobProxyServer;
+import net.lightbody.bmp.client.ClientUtil;
+import net.lightbody.bmp.proxy.auth.AuthType;
 import org.opendatakit.aggregate.integration.utilities.Interact;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Proxy;
@@ -18,10 +15,12 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import net.lightbody.bmp.BrowserMobProxy;
-import net.lightbody.bmp.BrowserMobProxyServer;
-import net.lightbody.bmp.client.ClientUtil;
-import net.lightbody.bmp.proxy.auth.AuthType;
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
+
+import static org.junit.Assert.assertTrue;
 
 public class BaseWebDriver {
 
@@ -120,7 +119,7 @@ public class BaseWebDriver {
     assertTrue("Login did not progress to Aggregate.html page", found);
   }
 
-  public java.util.function.Function<? super WebDriver, Boolean> byContainingText(final By by,
+  public Function<? super WebDriver, Boolean> byContainingText(final By by,
       final String text) {
     
     ExpectedCondition<Boolean> condition = new ExpectedCondition<Boolean>() {

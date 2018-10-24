@@ -1,25 +1,18 @@
 package org.opendatakit.aggregate.odktables.api;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import java.net.URI;
-import java.util.ArrayList;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.opendatakit.aggregate.odktables.rest.SavepointTypeManipulator;
-import org.opendatakit.aggregate.odktables.rest.entity.Row;
-import org.opendatakit.aggregate.odktables.rest.entity.RowFilterScope;
-import org.opendatakit.aggregate.odktables.rest.entity.RowList;
-import org.opendatakit.aggregate.odktables.rest.entity.RowOutcomeList;
-import org.opendatakit.aggregate.odktables.rest.entity.RowResourceList;
-import org.opendatakit.aggregate.odktables.rest.entity.TableResource;
+import org.opendatakit.aggregate.odktables.rest.entity.*;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+
+import java.net.URI;
+import java.util.ArrayList;
+
+import static org.junit.Assert.*;
 
 @RunWith(org.junit.runners.JUnit4.class)
 public class DataServiceTest extends AbstractServiceTest {

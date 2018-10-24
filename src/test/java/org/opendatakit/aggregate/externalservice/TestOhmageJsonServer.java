@@ -1,10 +1,5 @@
 package org.opendatakit.aggregate.externalservice;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import java.io.File;
-
 import org.apache.commons.lang3.StringUtils;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,6 +9,11 @@ import org.junit.runner.RunWith;
 import org.opendatakit.aggregate.selenium.BaseWebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.File;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(org.junit.runners.JUnit4.class)
 public class TestOhmageJsonServer {

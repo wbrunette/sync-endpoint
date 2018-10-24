@@ -22,10 +22,10 @@
         <toplevel.directory>${project.basedir}/../</toplevel.directory>
 
         <war.directory>${project.basedir}/../war-base</war.directory>
-        <scriptSourceDirectory>${project.basedir}/../src/it/scripts</scriptSourceDirectory>
-        <itFormsDirectory>${project.basedir}/../src/it/testfiles/forms</itFormsDirectory>
-        <itSubmissionsDirectory>${project.basedir}/../src/it/testfiles/submissions</itSubmissionsDirectory>
-        <itSyncDirectory>${project.basedir}/../src/it/testfiles/sync</itSyncDirectory>
+        <scriptSourceDirectory>${project.basedir}/../src/test/scripts</scriptSourceDirectory>
+        <itFormsDirectory>${project.basedir}/../src/test/testfiles/forms</itFormsDirectory>
+        <itSubmissionsDirectory>${project.basedir}/../src/test/testfiles/submissions</itSubmissionsDirectory>
+        <itSyncDirectory>${project.basedir}/../src/test/testfiles/sync</itSyncDirectory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <apache.httpclient.version>4.5.2</apache.httpclient.version>
         <apache.httpcore.version>4.4.5</apache.httpcore.version>
