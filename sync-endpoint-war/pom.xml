@@ -6,13 +6,14 @@
     <parent>
         <groupId>org.opendatakit</groupId>
         <artifactId>sync-endpoint</artifactId>
-        <version>1.0.1</version>
+        <version>2.1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
+    <groupId>org.opendatakit</groupId>
     <artifactId>sync-endpoint-war</artifactId>
+    <version>2.1.0</version>
     <packaging>war</packaging>
-    <version>latest</version>
     <name>Sync Endpoint WAR</name>
 
     <build>
@@ -58,6 +59,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failsafe.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>integration-test</id>

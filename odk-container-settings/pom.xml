@@ -4,11 +4,11 @@
   <parent>
     <groupId>org.opendatakit</groupId>
     <artifactId>sync-endpoint</artifactId>
-    <version>1.0.1</version>
+	  <version>2.1.0</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
+	<version>2.1.0</version>
   <artifactId>odk-container-settings</artifactId>
-  <version>latest</version>
   <packaging>jar</packaging>
   <name>Container Configuration</name>
   <build>
