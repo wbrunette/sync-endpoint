@@ -14,7 +14,7 @@
     <groupId>org.opendatakit</groupId>
     <artifactId>postgres-test</artifactId>
     <version>2.1.0</version>
-
+    <packaging>pom</packaging>
     <build>
         <sourceDirectory>${toplevel.directory}/src/main/java</sourceDirectory>
         <testSourceDirectory>${toplevel.directory}/src/test/java</testSourceDirectory>
@@ -70,6 +70,7 @@
             <groupId>org.opendatakit</groupId>
             <artifactId>sync-endpoint-docker</artifactId>
             <version>2.1.0</version>
+            <type>pom</type>
         </dependency>
     </dependencies>
     <reporting>
