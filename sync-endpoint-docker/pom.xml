@@ -17,6 +17,50 @@
     <packaging>pom</packaging>
 
     <build>
+        <plugins>
+            <!--<plugin>-->
+                <!--<artifactId>maven-dependency-plugin</artifactId>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>copy-dependencies</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<outputDirectory>${project.build.directory}</outputDirectory>-->
+                            <!--<includeArtifactIds>simple-xml,joda-time,commons-lang3</includeArtifactIds>-->
+                            <!--&lt;!&ndash; also uses spring framework components (but uses different android artifact) &ndash;&gt;-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+        <plugin>
+            <groupId>io.fabric8</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <version>0.26.0</version>
+            <executions>
+                <execution>
+                    <id>start</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>build</goal>
+                    </goals>
+                </execution>
+            </executions>
+
+
+            <configuration>
+                <images>
+                    <image>
+                        <name>docker.io/kkapelon/docker-maven-comparison</name>
+                        <build>
+                            <dockerFile>${project.basedir}/Dockerfile</dockerFile >
+                        </build>
+                    </image>
+                </images>
+            </configuration>
+        </plugin>
+        </plugins>
     </build>
     <dependencies>
         <dependency>

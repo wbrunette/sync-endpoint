@@ -1,0 +1,15 @@
+FROM maven:3-jdk-8 as compiler
+RUN unzip /*.war -d /ROOT
+
+
+FROM tomcat:8.5
+
+RUN ["rm", "-fr", "/usr/local/tomcat/webapps/ROOT"]
+
+COPY init.sh /tmp/init.sh
+COPY server.xml conf/
+COPY --from=compiler /ROOT webapps/ROOT/
+
+EXPOSE 8443
+ENTRYPOINT ["/tmp/init.sh"]
+CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
