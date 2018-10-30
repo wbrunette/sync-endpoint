@@ -11,6 +11,8 @@ COPY init.sh /tmp/init.sh
 COPY server.xml conf/
 COPY --from=compiler /ROOT webapps/ROOT/
 
+RUN ["chmod", "+x", "/tmp/init.sh"]
+
 EXPOSE 8443
 ENTRYPOINT ["/tmp/init.sh"]
 CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]

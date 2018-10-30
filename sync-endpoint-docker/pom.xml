@@ -55,6 +55,19 @@
                         <name>odk/sync-endpoint</name>
                         <build>
                             <dockerFile>${project.basedir}/Dockerfile</dockerFile >
+                            <assembly>
+                                <inline>
+                                    <dependencySets>
+                                        <dependencySet>
+                                            <includes>
+                                                <include>org.opendatakit:sync-endpoint-war</include>
+                                            </includes>
+                                            <outputDirectory>.</outputDirectory>
+                                            <outputFileNameMapping>sync-endpoint-war</outputFileNameMapping>
+                                        </dependencySet>
+                                    </dependencySets>
+                                </inline>
+                            </assembly>
                         </build>
                     </image>
                 </images>
