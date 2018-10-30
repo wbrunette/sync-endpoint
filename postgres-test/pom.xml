@@ -39,6 +39,7 @@
                         <phase>package</phase>
                         <goals>
                             <goal>build</goal>
+                            <goal>start</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -46,52 +47,92 @@
                     <images>
                         <image>
                             <name>odk/db-bootstrap</name>
+                            <alias>db-bootstrap</alias>
+
                             <build>
                                 <dockerFile>${project.basedir}/db-bootstrap/Dockerfile</dockerFile >
                             </build>
+
+                            <run>
+                                <env>
+                                    <POSTGRES_USER>postgres</POSTGRES_USER>
+                                    <POSTGRES_PASSWORD>postgresPostgresPassword</POSTGRES_PASSWORD>
+                                    <POSTGRES_DB>postgres</POSTGRES_DB>
+                                    <DB_BOOTSTRAP>true</DB_BOOTSTRAP>
+                                </env>
+                                <dependsOn>
+                                    <container>db</container>
+                                </dependsOn>
+                            </run>
+                        </image>
+                        <image>
+                            <name>postgres:9.6</name>
+                            <alias>db</alias>
+
+                            <run>
+                                <env>
+                                    <POSTGRES_USER>postgres</POSTGRES_USER>
+                                    <POSTGRES_PASSWORD>postgresPostgresPassword</POSTGRES_PASSWORD>
+                                    <POSTGRES_DB>postgres</POSTGRES_DB>
+                                </env>
+                            </run>
                         </image>
                         <image>
                             <name>odk/openldap</name>
+                            <alias>ldap-service</alias>
+
                             <build>
                                 <dockerFile>${project.basedir}/openldap/Dockerfile</dockerFile >
                             </build>
-                        </image>
-                        <image>
-                            <name>odk/phpldapadmin</name>
-                            <build>
-                                <dockerFile>${project.basedir}/phpldapadmin/Dockerfile</dockerFile >
-                            </build>
-                        </image>
-                        <image>
-                            <alias>odk-postgres-test</alias>
-                            <name>fabric8/compose-demo:latest</name>
 
-                            <external>
-                                <type>compose</type>
-                                <basedir>${project.basedir}</basedir>
-                                <composeFile>docker-compose.yml</composeFile>
-                            </external>
-
-                            <run/>
-
-                            <!--<build>-->
-                                <!--<assembly>-->
-                                    <!--<inline>-->
-                                        <!--<dependencySets>-->
-                                            <!--<dependencySet>-->
-                                                <!--<includes>-->
-                                                    <!--<include>org.opendatakit:sync-endpoint-docker</include>-->
-                                                <!--</includes>-->
-                                                <!--<outputDirectory>.</outputDirectory>-->
-                                                <!--<outputFileNameMapping>sync-endpoint-war</outputFileNameMapping>-->
-                                            <!--</dependencySet>-->
-                                        <!--</dependencySets>-->
-                                    <!--</inline>-->
-                                <!--</assembly>-->
-                            <!--</build>-->
-                            <!--<run>...</run>-->
-                            <!--<watch>...</watch>-->
+                            <run>
+                                <env>
+                                    <LDAP_ORGANISATION>Open Data Kit</LDAP_ORGANISATION>
+                                    <LDAP_DOMAIN>example.org</LDAP_DOMAIN>
+                                    <LDAP_READONLY_USER>true</LDAP_READONLY_USER>
+                                    <LDAP_READONLY_USER_PASSWORD>readonly</LDAP_READONLY_USER_PASSWORD>
+                                    <LDAP_ADMIN_PASSWORD>admin</LDAP_ADMIN_PASSWORD>
+                                </env>
+                            </run>
                         </image>
+                        <!--<image>-->
+                            <!--<name>odk/sync-endpoint</name>-->
+                            <!--<alias>sync</alias>-->
+
+                            <!--<run>-->
+                                <!--<env>-->
+                                    <!--<SPRING_PROFILES_ACTIVE>postgres</SPRING_PROFILES_ACTIVE>-->
+                                <!--</env>-->
+                                <!--<volumes>-->
+                                    <!--<bind>-->
+                                        <!--<volume>${project.basedir}/security.properties:/run/secrets/org.opendatakit.aggregate.security.properties</volume>-->
+                                        <!--<volume>${project.basedir}/jdbc.properties:/run/secrets/org.opendatakit.aggregate.jdbc.properties</volume>-->
+                                    <!--</bind>-->
+                                <!--</volumes>-->
+                                <!--<dependsOn>-->
+                                    <!--<container>db-bootstrap</container>-->
+                                    <!--<container>ldap-service</container>-->
+                                <!--</dependsOn>-->
+                            <!--</run>-->
+
+                            <!--&lt;!&ndash;<build>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<assembly>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<inline>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<dependencySets>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<dependencySet>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<includes>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<include>org.opendatakit:sync-endpoint-docker</include>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</includes>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<outputDirectory>.</outputDirectory>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<outputFileNameMapping>sync-endpoint-war</outputFileNameMapping>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</dependencySet>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</dependencySets>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</inline>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</assembly>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</build>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<run>...</run>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<watch>...</watch>&ndash;&gt;-->
+                        <!--</image>-->
                     </images>
                 </configuration>
             </plugin>

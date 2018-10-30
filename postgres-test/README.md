@@ -84,7 +84,7 @@ See [here](http://opendatakit-dev.cs.washington.edu/2_0_tools/release/current_re
 
 #### Managing Identity through DHIS2 
 
-1. Modify [config/sync-endpoint/security.properties](config/sync-endpoint/security.properties) to fill in the `Settings for DHIS2 Authentication` section
+1. Modify [config/sync-endpoint/security.properties](security.properties) to fill in the `Settings for DHIS2 Authentication` section
 2. Set `security.server.authenticationMethod` in `security.properties` to `dhis2`
 3. [OPTIONAL] Remove OpenLDAP and phpLDAPadmin from [docker-compose.yml](docker-compose.yml)
 
