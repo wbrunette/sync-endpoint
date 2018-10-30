@@ -19,15 +19,23 @@
     <build>
         <sourceDirectory>${toplevel.directory}/src/main/java</sourceDirectory>
         <testSourceDirectory>${toplevel.directory}/src/test/java</testSourceDirectory>
-        <testResources>
-            <testResource>
-                <directory>${toplevel.directory}/src/test/resources</directory>
-                <filtering>true</filtering>
+
+        <resources>
+            <resource>
+                <filtering>false</filtering>
+                <directory>${toplevel.directory}/src/main/resources/common/</directory>
                 <includes>
-                    <include>**/*.properties</include>
+                    <include>**/*</include>
                 </includes>
-            </testResource>
-        </testResources>
+            </resource>
+            <resource>
+                <filtering>false</filtering>
+                <directory>${toplevel.directory}/src/main/resources/container/</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
 
         <plugins>
             <plugin>
@@ -43,51 +51,7 @@
                 <artifactId>maven-war-plugin</artifactId>
             </plugin>
 
-            <plugin>
-                <!-- This configures the running of odktables integration tests. -->
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven.surefire.plugin.version}</version>
-                <inherited>true</inherited>
-                <configuration>
-                    <argLine>${surefire.argLine}</argLine>
-                    <skipTests>true</skipTests>
-                    <classesDirectory>${project.build.directory}/generated-classes/jacoco/classes</classesDirectory>
-                    <excludes>
-                        <exclude>**/integration/**</exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>${maven.failsafe.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>integration-test</id>
-                    </execution>
-                    <execution>
-                        <id>verify</id>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.opendatakit</groupId>
-            <artifactId>odk-container-settings</artifactId>
-            <version>latest</version>
-        </dependency>
-    </dependencies>
-
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>${maven.surefire.report.plugin.version}</version>
-                <inherited>true</inherited>
-            </plugin>
-        </plugins>
-    </reporting>
 </project>

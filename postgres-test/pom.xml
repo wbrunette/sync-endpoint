@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.opendatakit</groupId>
+        <artifactId>sync-endpoint</artifactId>
+        <version>2.1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>org.opendatakit</groupId>
+    <artifactId>postgres-test</artifactId>
+    <version>2.1.0</version>
+
+    <build>
+        <sourceDirectory>${toplevel.directory}/src/main/java</sourceDirectory>
+        <testSourceDirectory>${toplevel.directory}/src/test/java</testSourceDirectory>
+        <testResources>
+            <testResource>
+                <directory>${toplevel.directory}/src/test/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
+            </testResource>
+        </testResources>
+
+        <plugins>
+            <plugin>
+                <!-- This configures the running of odktables integration tests. -->
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <argLine>${surefire.argLine}</argLine>
+                    <skipTests>true</skipTests>
+                    <classesDirectory>${project.build.directory}/generated-classes/jacoco/classes</classesDirectory>
+                    <excludes>
+                        <exclude>**/integration/**</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failsafe.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                    </execution>
+                    <execution>
+                        <id>verify</id>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>org.opendatakit</groupId>
+            <artifactId>sync-endpoint-war</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+    </dependencies>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>${maven.surefire.report.plugin.version}</version>
+                <inherited>true</inherited>
+            </plugin>
+        </plugins>
+    </reporting>
+</project>
