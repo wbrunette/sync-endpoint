@@ -30,6 +30,70 @@
 
         <plugins>
             <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.26.0</version>
+                <executions>
+                    <execution>
+                        <id>start</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>odk/db-bootstrap</name>
+                            <build>
+                                <dockerFile>${project.basedir}/db-bootstrap/Dockerfile</dockerFile >
+                            </build>
+                        </image>
+                        <image>
+                            <name>odk/openldap</name>
+                            <build>
+                                <dockerFile>${project.basedir}/openldap/Dockerfile</dockerFile >
+                            </build>
+                        </image>
+                        <image>
+                            <name>odk/phpldapadmin</name>
+                            <build>
+                                <dockerFile>${project.basedir}/phpldapadmin/Dockerfile</dockerFile >
+                            </build>
+                        </image>
+                        <image>
+                            <alias>odk-postgres-test</alias>
+                            <name>fabric8/compose-demo:latest</name>
+
+                            <external>
+                                <type>compose</type>
+                                <basedir>${project.basedir}</basedir>
+                                <composeFile>docker-compose.yml</composeFile>
+                            </external>
+
+                            <!--<build>-->
+                                <!--<assembly>-->
+                                    <!--<inline>-->
+                                        <!--<dependencySets>-->
+                                            <!--<dependencySet>-->
+                                                <!--<includes>-->
+                                                    <!--<include>org.opendatakit:sync-endpoint-docker</include>-->
+                                                <!--</includes>-->
+                                                <!--<outputDirectory>.</outputDirectory>-->
+                                                <!--<outputFileNameMapping>sync-endpoint-war</outputFileNameMapping>-->
+                                            <!--</dependencySet>-->
+                                        <!--</dependencySets>-->
+                                    <!--</inline>-->
+                                <!--</assembly>-->
+                            <!--</build>-->
+                            <!--<run>...</run>-->
+                            <!--<watch>...</watch>-->
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
             </plugin>
