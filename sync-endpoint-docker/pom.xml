@@ -18,22 +18,22 @@
 
     <build>
         <plugins>
-            <!--<plugin>-->
-                <!--<artifactId>maven-dependency-plugin</artifactId>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<phase>package</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>copy-dependencies</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<outputDirectory>${project.build.directory}</outputDirectory>-->
-                            <!--<includeArtifactIds>simple-xml,joda-time,commons-lang3</includeArtifactIds>-->
-                            <!--&lt;!&ndash; also uses spring framework components (but uses different android artifact) &ndash;&gt;-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}</outputDirectory>
+                            <includeArtifactIds>sync-endpoint-war</includeArtifactIds>
+                            <!-- also uses spring framework components (but uses different android artifact) -->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         <plugin>
             <groupId>io.fabric8</groupId>
             <artifactId>docker-maven-plugin</artifactId>
@@ -52,7 +52,7 @@
             <configuration>
                 <images>
                     <image>
-                        <name>docker.io/kkapelon/docker-maven-comparison</name>
+                        <name>odk/sync-endpoint</name>
                         <build>
                             <dockerFile>${project.basedir}/Dockerfile</dockerFile >
                         </build>
