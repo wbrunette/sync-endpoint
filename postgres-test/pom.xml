@@ -72,6 +72,8 @@
                                 <composeFile>docker-compose.yml</composeFile>
                             </external>
 
+                            <run/>
+
                             <!--<build>-->
                                 <!--<assembly>-->
                                     <!--<inline>-->
