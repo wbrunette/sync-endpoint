@@ -57,6 +57,15 @@
 
                 <configuration>
                     <imagePullPolicy>always</imagePullPolicy>
+
+                    <images>
+                        <image>
+                            <name>odk/sync-endpoint</name>
+                            <build>
+                                <dockerFile>${project.basedir}/Dockerfile</dockerFile>
+                            </build>
+                        </image>
+                    </images>
                 </configuration>
             </plugin>
         </plugins>
