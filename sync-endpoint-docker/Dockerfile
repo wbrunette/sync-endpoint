@@ -1,4 +1,5 @@
 FROM maven:3-jdk-8 as compiler
+COPY *.war /
 RUN unzip /*.war -d /ROOT
 
 
