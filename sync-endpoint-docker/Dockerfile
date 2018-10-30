@@ -1,17 +1,13 @@
-FROM maven:3-jdk-8 as compiler
-COPY *.war /
-RUN unzip /*.war -d /ROOT
-
-
 FROM tomcat:8.5
-
-RUN ["rm", "-fr", "/usr/local/tomcat/webapps/ROOT"]
 
 COPY init.sh /tmp/init.sh
 COPY server.xml conf/
-COPY --from=compiler /ROOT webapps/ROOT/
 
-RUN ["chmod", "+x", "/tmp/init.sh"]
+COPY target/dependency/sync-endpoint-war.war /
+RUN chmod +x /tmp/init.sh && \
+    rm -rf /usr/local/tomcat/webapps/ROOT && \
+    unzip /sync-endpoint-war.war -d /usr/local/tomcat/webapps/ROOT && \
+    rm /sync-endpoint-war.war
 
 EXPOSE 8443
 ENTRYPOINT ["/tmp/init.sh"]

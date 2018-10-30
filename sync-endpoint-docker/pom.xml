@@ -22,59 +22,46 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
-                        <phase>package</phase>
+                        <phase>generate-resources</phase>
                         <goals>
-                            <goal>copy-dependencies</goal>
+                            <goal>copy</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.basedir}</outputDirectory>
-                            <includeArtifactIds>sync-endpoint-war</includeArtifactIds>
-                            <!-- also uses spring framework components (but uses different android artifact) -->
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>sync-endpoint-war</artifactId>
+                                    <version>2.1.0</version>
+                                    <type>war</type>
+                                    <destFileName>sync-endpoint-war.war</destFileName>
+                                </artifactItem>
+                            </artifactItems>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-        <plugin>
-            <groupId>io.fabric8</groupId>
-            <artifactId>docker-maven-plugin</artifactId>
-            <version>0.26.0</version>
-            <executions>
-                <execution>
-                    <id>start</id>
-                    <phase>package</phase>
-                    <goals>
-                        <goal>build</goal>
-                    </goals>
-                </execution>
-            </executions>
 
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.26.0</version>
+                <executions>
+                    <execution>
+                        <id>start</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
 
-            <configuration>
-                <images>
-                    <image>
-                        <name>odk/sync-endpoint</name>
-                        <build>
-                            <dockerFile>${project.basedir}/Dockerfile</dockerFile >
-                            <assembly>
-                                <inline>
-                                    <dependencySets>
-                                        <dependencySet>
-                                            <includes>
-                                                <include>org.opendatakit:sync-endpoint-war</include>
-                                            </includes>
-                                            <outputDirectory>.</outputDirectory>
-                                            <outputFileNameMapping>sync-endpoint-war</outputFileNameMapping>
-                                        </dependencySet>
-                                    </dependencySets>
-                                </inline>
-                            </assembly>
-                        </build>
-                    </image>
-                </images>
-            </configuration>
-        </plugin>
+                <configuration>
+                    <imagePullPolicy>always</imagePullPolicy>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
     <dependencies>
         <dependency>
             <groupId>org.opendatakit</groupId>
