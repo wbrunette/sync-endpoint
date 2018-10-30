@@ -18,24 +18,6 @@
 
     <build>
         <sourceDirectory>${toplevel.directory}/src/main/java</sourceDirectory>
-        <testSourceDirectory>${toplevel.directory}/src/test/java</testSourceDirectory>
-
-        <resources>
-            <resource>
-                <filtering>false</filtering>
-                <directory>${toplevel.directory}/src/main/resources/common/</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
-            <resource>
-                <filtering>false</filtering>
-                <directory>${toplevel.directory}/src/main/resources/container/</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
-        </resources>
 
         <plugins>
             <plugin>
@@ -49,6 +31,24 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webResources>
+                            <resource>
+                                <filtering>false</filtering>
+                                <directory>${toplevel.directory}/src/main/resources/common/</directory>
+                                <includes>
+                                    <include>**/*</include>
+                                </includes>
+                            </resource>
+                            <resource>
+                                <filtering>false</filtering>
+                                <directory>${toplevel.directory}/src/main/resources/container/</directory>
+                                <includes>
+                                    <include>**/*</include>
+                                </includes>
+                            </resource>
+                    </webResources>
+                </configuration>
             </plugin>
 
         </plugins>
