@@ -61,7 +61,7 @@
     </properties>
     <modules>
         <module>sync-endpoint-war</module>
-        <module>odk-tables-api</module>
+        <module>odk-rest-interface</module>
         <module>postgres-test</module>
         <module>sync-endpoint-docker</module>
     </modules>

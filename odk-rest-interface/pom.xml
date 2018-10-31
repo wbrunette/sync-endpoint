@@ -8,10 +8,9 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
   <groupId>org.opendatakit</groupId>
-  <artifactId>odk-tables-api</artifactId>
-    <version>2.1.0</version>
+  <artifactId>odk-rest-interface</artifactId>
+  <version>2.1.0</version>
   <packaging>jar</packaging>
-  <name>API Jar for ODK Tables</name>
   <!--
   <dependencies>
     <dependency>
