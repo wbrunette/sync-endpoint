@@ -14,7 +14,7 @@
     <groupId>org.opendatakit</groupId>
     <artifactId>postgres-test</artifactId>
     <version>2.1.0</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <build>
         <sourceDirectory>${toplevel.directory}/src/main/java</sourceDirectory>
         <testSourceDirectory>${toplevel.directory}/src/test/java</testSourceDirectory>
@@ -40,6 +40,13 @@
                         <goals>
                             <goal>build</goal>
                             <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>stop</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -159,40 +166,22 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>sql-maven-plugin</artifactId>
-                <version>1.5</version>
 
-                <dependencies>
-                    <dependency>
-                        <groupId>org.postgresql</groupId>
-                        <artifactId>postgresql</artifactId>
-                        <version>42.2.5</version>
-                    </dependency>
-                </dependencies>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>5.2.1</version>
 
                 <configuration>
-                    <driver>org.postgresql.Driver</driver>
                     <url>jdbc:postgresql://localhost/postgres?autoDeserialize=true</url>
-                    <username>postgres</username>
+                    <user>postgres</user>
                     <password>postgresPostgresPassword</password>
+                    <initSql>
+                        CREATE USER odk WITH UNENCRYPTED PASSWORD 'odk';
+                        CREATE SCHEMA odk_sync AUTHORIZATION odk;
+                        GRANT ALL PRIVILEGES ON SCHEMA odk_sync TO odk;
+                    </initSql>
                 </configuration>
-
-                <executions>
-                    <execution>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-
-                        <configuration>
-                            <sqlCommand>CREATE USER odk WITH UNENCRYPTED PASSWORD 'odk';</sqlCommand>
-                            <sqlCommand>CREATE SCHEMA odk_sync AUTHORIZATION odk;</sqlCommand>
-                            <sqlCommand>GRANT ALL PRIVILEGES ON SCHEMA odk_sync TO odk;</sqlCommand>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
