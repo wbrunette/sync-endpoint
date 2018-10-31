@@ -48,9 +48,14 @@
                         <goals>
                             <goal>stop</goal>
                         </goals>
+                        <configuration>
+                            <keepContainer>true</keepContainer>
+                        </configuration>
                     </execution>
                 </executions>
                 <configuration>
+                    <imagePullPolicy>always</imagePullPolicy>
+
                     <images>
                         <image>
                             <name>postgres:9.6</name>
@@ -164,9 +169,15 @@
                 <executions>
                     <execution>
                         <id>integration-test</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
                     </execution>
                     <execution>
                         <id>verify</id>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
