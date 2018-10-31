@@ -182,6 +182,16 @@
                         GRANT ALL PRIVILEGES ON SCHEMA odk_sync TO odk;
                     </initSql>
                 </configuration>
+
+                <executions>
+                    <execution>
+                        <id>init-db</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>baseline</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
