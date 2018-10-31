@@ -66,6 +66,10 @@
                                 <ports>
                                     <port>5432:5432</port>
                                 </ports>
+
+                                <wait>
+                                    <time>10000</time>
+                                </wait>
                             </run>
                         </image>
                         <image>
@@ -173,7 +177,7 @@
                 <version>5.2.1</version>
 
                 <configuration>
-                    <url>jdbc:postgresql://localhost/postgres?autoDeserialize=true</url>
+                    <url>jdbc:postgresql://localhost:5432/postgres?autoDeserialize=true</url>
                     <user>postgres</user>
                     <password>postgresPostgresPassword</password>
                     <initSql>
