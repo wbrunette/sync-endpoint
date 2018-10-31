@@ -44,7 +44,8 @@
             <plugin>
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>0.26.0</version>
+                <version>0.27.2</version>
+
                 <executions>
                     <execution>
                         <id>start</id>
@@ -57,7 +58,6 @@
 
                 <configuration>
                     <imagePullPolicy>always</imagePullPolicy>
-
                     <images>
                         <image>
                             <name>odk/sync-endpoint</name>
