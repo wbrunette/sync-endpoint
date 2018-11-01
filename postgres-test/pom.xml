@@ -50,7 +50,7 @@
                             <goal>stop</goal>
                         </goals>
                         <configuration>
-                            <keepContainer>false</keepContainer>
+                            <keepContainer>true</keepContainer>
                         </configuration>
                     </execution>
                 </executions>
@@ -160,6 +160,7 @@
                 <configuration>
                     <argLine>${surefire.argLine}</argLine>
                     <useSystemClassLoader>false</useSystemClassLoader>
+		    <skipTests>true</skipTests>
                 </configuration>
             </plugin>
             <plugin>

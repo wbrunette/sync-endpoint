@@ -36,7 +36,7 @@ import org.opendatakit.common.persistence.exception.ODKTaskLockException;
 import org.opendatakit.common.web.CallingContext;
 import org.opendatakit.common.web.TestContextFactory;
 
-public class TableAclManagerTest {
+public class TableAclManagerTestIT {
 
   private CallingContext cc;
   private TablesUserPermissions userPermissions;
