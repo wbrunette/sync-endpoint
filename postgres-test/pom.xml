@@ -24,6 +24,7 @@
                 <filtering>true</filtering>
                 <includes>
                     <include>**/*.properties</include>
+                    <include>**/*.xml</include>
                 </includes>
             </testResource>
         </testResources>
@@ -49,7 +50,7 @@
                             <goal>stop</goal>
                         </goals>
                         <configuration>
-                            <keepContainer>true</keepContainer>
+                            <keepContainer>false</keepContainer>
                         </configuration>
                     </execution>
                 </executions>
@@ -148,6 +149,10 @@
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+            <plugin>
                 <!-- This configures the running of odktables integration tests. -->
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.plugin.version}</version>
@@ -211,14 +216,4 @@
             <type>pom</type>
         </dependency>
     </dependencies>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>${maven.surefire.report.plugin.version}</version>
-                <inherited>true</inherited>
-            </plugin>
-        </plugins>
-    </reporting>
 </project>
