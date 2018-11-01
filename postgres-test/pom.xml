@@ -154,6 +154,7 @@
                 <inherited>true</inherited>
                 <configuration>
                     <argLine>${surefire.argLine}</argLine>
+                    <useSystemClassLoader>false</useSystemClassLoader>
                 </configuration>
             </plugin>
             <plugin>
