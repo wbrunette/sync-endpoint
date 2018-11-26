@@ -231,6 +231,7 @@
                 <version>${maven.failsafe.plugin.version}</version>
                 <configuration>
                     <testSourceDirectory>${toplevel.directory}/src/it/java</testSourceDirectory>
+                    <forkedProcessExitTimeoutInSeconds>600</forkedProcessExitTimeoutInSeconds>
                 </configuration>
                 <executions>
                     <execution>
