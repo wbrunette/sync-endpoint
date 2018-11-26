@@ -79,7 +79,12 @@ public class QueryResultTestIT {
 		
 		System.out.println("dropping the large dataset");
 		cc.getDatastore().dropRelation(rel, cc.getCurrentUser());// drop it, in case prior test was messed up...
-		
+		try {
+			Thread.sleep(PersistConsts.MAX_SETTLE_MILLISECONDS);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("done dropping the large dataset");
 	}
 
 	static class DataValue {
@@ -230,82 +235,82 @@ public class QueryResultTestIT {
 	
 	@Test
 	public void testCase1str() throws ODKDatastoreException {
-		
+
 		CallingContext cc = TestContextFactory.getCallingContext();
 		Datastore ds = cc.getDatastore();
 		User user = cc.getCurrentUser();
 		MyRelation rel = MyRelation.assertRelation(cc);
-		
+
 		Query query = ds.createQuery(rel, "QueryResultTestIT.testCase1str", user);
-		
+
 		List<?> values = query.executeDistinctValueForDataField(MyRelation.fieldStr);
 		assertEquals(6, values.size());
 	}
 
 	@Test
 	public void testCase1dbl() throws ODKDatastoreException {
-		
+
 		CallingContext cc = TestContextFactory.getCallingContext();
 		Datastore ds = cc.getDatastore();
 		User user = cc.getCurrentUser();
 		MyRelation rel = MyRelation.assertRelation(cc);
-		
+
 		Query query = ds.createQuery(rel, "QueryResultTestIT.testCase1dbl", user);
-		
+
 		List<?> values = query.executeDistinctValueForDataField(MyRelation.fieldDbl);
 		assertEquals(SET_SIZE + 7, values.size());
 	}
-	
+
 	@Test
 	public void testCase1bool() throws ODKDatastoreException {
-		
+
 		CallingContext cc = TestContextFactory.getCallingContext();
 		Datastore ds = cc.getDatastore();
 		User user = cc.getCurrentUser();
 		MyRelation rel = MyRelation.assertRelation(cc);
-		
+
 		Query query = ds.createQuery(rel, "QueryResultTestIT.testCase1bool", user);
-		
+
 		List<?> values = query.executeDistinctValueForDataField(MyRelation.fieldBool);
 		// true, false, null
 		assertEquals(3, values.size());
 	}
-	
+
 	@Test
 	public void testCase1int() throws ODKDatastoreException {
-		
+
 		CallingContext cc = TestContextFactory.getCallingContext();
 		Datastore ds = cc.getDatastore();
 		User user = cc.getCurrentUser();
 		MyRelation rel = MyRelation.assertRelation(cc);
-		
+
 		Query query = ds.createQuery(rel, "QueryResultTestIT.testCase1int", user);
-		
+
 		List<?> values = query.executeDistinctValueForDataField(MyRelation.fieldInt);
 		assertEquals(SET_SIZE, values.size());
 	}
-	
+
 	@Test
 	public void testCase2() throws ODKDatastoreException {
-		
+
 		CallingContext cc = TestContextFactory.getCallingContext();
 		Datastore ds = cc.getDatastore();
 		User user = cc.getCurrentUser();
 		MyRelation rel = MyRelation.assertRelation(cc);
-		
+
 		Query query = ds.createQuery(rel, "QueryResultTestIT.testCase2", user);
 		query.addFilter(MyRelation.fieldInt, FilterOperation.GREATER_THAN, SET_SIZE - 2);
 		query.addSort(MyRelation.fieldDate, Direction.ASCENDING);
 		query.addSort(MyRelation.fieldDbl, Direction.DESCENDING);
-		
+
 		Set<String> pkSet = new HashSet<String>();
-		
+
 		int len = 0;
 		QueryResult result = query.executeQuery(null, 10);
 		len += result.getResultList().size();
 		assertEquals( true, result.hasMoreResults());
 		assertEquals( 10, result.getResultList().size());
-		
+
 		for ( CommonFieldsBase cb : result.getResultList() ) {
 			assertEquals(false, pkSet.contains(cb.getUri()));
 			pkSet.add(cb.getUri());
@@ -319,28 +324,27 @@ public class QueryResultTestIT {
 			len += result.getResultList().size();
 			startCursor = result.getResumeCursor();
 			done = !result.hasMoreResults();
-	
+
 			for ( CommonFieldsBase cb : result.getResultList() ) {
 				assertEquals(false, pkSet.contains(cb.getUri()));
 				pkSet.add(cb.getUri());
 				((MyRelation) cb).print();
 			}
-		}	
-		
+		}
+
 		assertEquals( false, result.hasMoreResults());
 		assertEquals( 2*values.length, len);
 		System.out.println("done with testCase2");
 	}
-	
+
 	@Test
 	public void testCase3() throws ODKDatastoreException {
-		
 		CallingContext cc = TestContextFactory.getCallingContext();
 		Datastore ds = cc.getDatastore();
 		User user = cc.getCurrentUser();
 		MyRelation rel = MyRelation.assertRelation(cc);
 		System.out.println("start testCase3");
-		
+
 		Query query = ds.createQuery(rel, "QueryResultTestIT.testCase3(1st)", user);
 		query.addFilter(MyRelation.fieldDbl, FilterOperation.EQUAL, new BigDecimal("0.9"));
 		query.addFilter(MyRelation.fieldBool, FilterOperation.EQUAL, true);
@@ -354,9 +358,9 @@ public class QueryResultTestIT {
 		backquery.addSort(MyRelation.fieldDate, Direction.ASCENDING);
 
 		Set<String> pkTotalSet = new HashSet<String>();
-		
+
 		List<String> pkOrdering = new ArrayList<String>();
-		
+
 		int TOTAL_SIZE = 3*SET_SIZE;
 		int fetchSizes[] = {1, 2, 1021, 303, 101, 2831 };
 		int idxFetch = 4;
@@ -365,7 +369,7 @@ public class QueryResultTestIT {
 		len += result.getResultList().size();
 		assertEquals( true, result.hasMoreResults());
 		assertEquals( fetchSizes[idxFetch], result.getResultList().size());
-		
+
 		System.out.println("Accumulating forward query results");
 		for ( CommonFieldsBase cb : result.getResultList() ) {
 			assertEquals(false, pkOrdering.contains(cb.getUri()));
@@ -374,12 +378,12 @@ public class QueryResultTestIT {
 			pkTotalSet.add(cb.getUri());
 			((MyRelation) cb).print();
 		}
-		
+
 		System.out.println("Verifying initial backward query is empty");
 		QueryResult backResult = backquery.executeQuery( result.getBackwardCursor(), pkOrdering.size());
 		assertEquals( false, backResult.hasMoreResults());
 		assertEquals(0, backResult.getResultList().size());
-		
+
 		boolean notFirst = false;
 		boolean done = false;
 		QueryResumePoint startCursor = result.getResumeCursor();
@@ -390,7 +394,7 @@ public class QueryResultTestIT {
 			len += result.getResultList().size();
 			startCursor = result.getResumeCursor();
 			done = !result.hasMoreResults();
-	
+
 			System.out.println("Verifying backward query against ordering of earlier result");
 			backResult = backquery.executeQuery( result.getBackwardCursor(), pkOrdering.size());
 			assertEquals( notFirst, backResult.hasMoreResults());
@@ -401,7 +405,7 @@ public class QueryResultTestIT {
 				((MyRelation) cb).print();
 				assertEquals( pkOrdering.get(pkOrdering.size()-i-1), cb.getUri());
 			}
-			
+
 			System.out.println("Accumulating forward query results");
 			pkOrdering.clear();
 			for ( CommonFieldsBase cb : result.getResultList() ) {
@@ -411,8 +415,9 @@ public class QueryResultTestIT {
 				pkTotalSet.add(cb.getUri());
 				((MyRelation) cb).print();
 			}
-		}	
-		
+		}
+
+		//between end
 		idxFetch = ( idxFetch + 1) % fetchSizes.length;
 		System.out.println("Before Issuing (what should be empty) follow-up query");
 		result = query.executeQuery(startCursor, fetchSizes[idxFetch]);
@@ -430,10 +435,10 @@ public class QueryResultTestIT {
 			((MyRelation) cb).print();
 			assertEquals( pkOrdering.get(pkOrdering.size()-i-1), cb.getUri());
 		}
-		
+
 		assertEquals(false, result.hasMoreResults());
 		assertEquals(0, result.getResultList().size());
-		
+
 		idxFetch = ( idxFetch + 1) % fetchSizes.length;
 		System.out.println("Before Re-Issuing (what should be empty) follow-up query");
 		// this should be an empty list
