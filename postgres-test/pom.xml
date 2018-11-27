@@ -164,9 +164,9 @@
                                     <port>8888:8888</port>
                                 </ports>
 
-                                <network>
+              <!--                  <network>
                                     <mode>host</mode>
-                                </network>
+                                </network> -->
 
                                 <wait>
                                     <time>10000</time>
