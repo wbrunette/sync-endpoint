@@ -201,6 +201,7 @@
 			    <configuration>
 					<trimStackTrace>false</trimStackTrace>								  
                     <argLine>${surefire.argLine}</argLine>
+					<useSystemClassLoader>false</useSystemClassLoader>
                     <systemPropertyVariables>
                         <test.server.port>8888</test.server.port>
                         <test.server.hostname>localhost</test.server.hostname>
