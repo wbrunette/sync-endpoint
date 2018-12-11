@@ -13,5 +13,5 @@ jobs:
     
     steps:
       - checkout
-       
+      - setup_remote_docker
       - run: mvn clean install
