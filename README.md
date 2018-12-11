@@ -2,6 +2,8 @@
 
 This project is __*actively maintained*__
 
+*WARNING* THE DOCUMENTATION IS UNDERGOING A REFRESH AND IS CURRENTLY OUT OF DATE
+
 The developer [wiki](https://github.com/opendatakit/opendatakit/wiki) (including release notes) and
 [issues tracker](https://github.com/opendatakit/opendatakit/issues) are located under
 the [**opendatakit**](https://github.com/opendatakit/opendatakit) project.
