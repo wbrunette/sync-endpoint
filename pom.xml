@@ -35,16 +35,36 @@
         <google.api-services-sheets.version>v4-rev553-1.25.0</google.api-services-sheets.version>
         <google.api-services-drive.version>v3-rev136-1.25.0</google.api-services-drive.version>
         <org.apache.wink.version>1.4</org.apache.wink.version>
-        <maven.surefire.report.plugin.version>2.22.1</maven.surefire.report.plugin.version>
-        <maven.surefire.plugin.version>2.22.1</maven.surefire.plugin.version>
+
+
         <surefire.argLine>-Xms300m -Xmx3048m </surefire.argLine> <!-- JVM size can probably be reduced -->
-        <maven.failsafe.plugin.version>2.22.1</maven.failsafe.plugin.version>
+
         <build.helper.maven.plugin.version>3.0.0</build.helper.maven.plugin.version>
-        <maven.jar.plugin.version>3.1.1</maven.jar.plugin.version>
-        <maven.javadoc.plugin.version>3.0.1</maven.javadoc.plugin.version>
-        <maven.source.plugin.version>3.0.1</maven.source.plugin.version>
-        <maven.war.plugin.version>3.2.2</maven.war.plugin.version>
+
+
+        <!-- maven core -->
+        <maven.clean.plugin.version>3.1.0</maven.clean.plugin.version>
         <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
+        <maven.deploy.plugin.version>3.0.0-M1</maven.deploy.plugin.version>
+        <maven.failsafe.plugin.version>3.0.0-M3</maven.failsafe.plugin.version>
+        <maven.install.plugin.version>3.0.0-M1</maven.install.plugin.version>
+        <maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
+        <maven.surefire.plugin.version>3.0.0-M3</maven.surefire.plugin.version>
+
+        <!-- maven packaging -->
+        <maven.jar.plugin.version>3.1.1</maven.jar.plugin.version>
+        <maven.war.plugin.version>3.2.2</maven.war.plugin.version>
+        <maven.source.plugin.version>3.0.1</maven.source.plugin.version>
+
+        <!-- maven reporting -->
+        <maven.surefire.report.plugin.version>3.0.0-M3</maven.surefire.report.plugin.version>
+        <maven.javadoc.plugin.version>3.1.0</maven.javadoc.plugin.version>
+
+        <!-- maven tools -->
+        <maven.assembly.plugin.version>3.1.1</maven.assembly.plugin.version>
+        <maven.dependency.plugin.version>3.1.1</maven.dependency.plugin.version>
+
+
         <junit.version>4.12</junit.version>
         <com.fasterxml.jackson.base.version>2.9.8</com.fasterxml.jackson.base.version>
         <com.fasterxml.jackson.core.version>2.9.8</com.fasterxml.jackson.core.version>
@@ -148,7 +168,7 @@
         <dependency>
           <groupId>commons-logging</groupId>
           <artifactId>commons-logging</artifactId>
-          <version>1.2</version>
+          <version>1.1.1</version> <!-- should match what spring wants -->
           <type>jar</type>
           <scope>compile</scope>
             <exclusions>
