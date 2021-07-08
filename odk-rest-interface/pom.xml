@@ -8,7 +8,7 @@
         <version>2.1.8</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <groupId>org.opendatakit</groupId>
+
     <artifactId>odk-rest-interface</artifactId>
     <packaging>jar</packaging>
     <build>

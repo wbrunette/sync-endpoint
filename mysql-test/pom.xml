@@ -94,7 +94,7 @@
                                 </ports>
 
                                 <wait>
-                                    <time>20000</time>
+                                    <time>30000</time>
                                     <exec>
                                         <postStart>/tmp/executeMysql.sh</postStart>
                                     </exec>

@@ -10,7 +10,6 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>org.opendatakit</groupId>
     <artifactId>sync-endpoint-common-dependencies</artifactId>
     <packaging>pom</packaging>
     <name>Sync Endpoint Common Dependencies</name>

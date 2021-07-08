@@ -11,7 +11,6 @@
         <relativePath>../sync-endpoint-common-dependencies/pom.xml</relativePath>
     </parent>
 
-    <groupId>org.opendatakit</groupId>
     <artifactId>postgres-test</artifactId>
     <packaging>jar</packaging>
     <build>
@@ -88,7 +87,7 @@
                                 </ports>
 
                                 <wait>
-                                    <time>10000</time>
+                                    <time>30000</time>
                                     <exec>
                                         <postStart>psql -U postgres -f /tmp/create_db_and_user.sql</postStart>
                                     </exec>
